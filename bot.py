@@ -13,9 +13,6 @@ sub = '' #Subreddit you want the bot to run in
 minimum_submission_time = 3600 #The amount of milliseconds you want to pass for a post to get the allotted amount of minimum karma
 minimum_karma = 10 #Replace with the minimum karma you want a post to have
 
-now = datetime.datetime.now() #Current Time
-submission_created = datetime.datetime.fromtimestamp(submission.created) #Time submission was created
-
 reddit = praw.Reddit(
     username = user,
     password = pass,
@@ -25,6 +22,10 @@ reddit = praw.Reddit(
 )
 
 def removePost(submission):
+    
+    now = datetime.datetime.now() #Current Time
+    submission_created = datetime.datetime.fromtimestamp(submission.created) #Time submission was created
+    
     if(now - submission_created.seconds >= minimum_submission_time and submission.score < minimum_karma):
         comment = submission.reply("Your submission didn't reach the amount of minimum karma within the allotted time.")
         try:
