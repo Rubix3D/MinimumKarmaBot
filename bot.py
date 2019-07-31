@@ -10,7 +10,7 @@ c_secret = '' #Bot Client Secret
 
 sub = '' #Subreddit you want the bot to run in
 
-minimum_submission_time = 3600 #The amount of milliseconds you want to pass for a post to get the allotted amount of minimum karma
+minimum_submission_time = 3600 #The amount of seconds you want to pass for a post to get the allotted amount of minimum karma
 minimum_karma = 10 #Replace with the minimum karma you want a post to have
 
 reddit = praw.Reddit(
@@ -39,8 +39,8 @@ def removePost(submission):
 
 def main(r):
     while True:
-        for s in reddit.subreddit(str(sub)).new():
-            remove(s)
+        for submission in reddit.subreddit(str(sub)).new():
+            removePost(submission)
         time.sleep(60) #waits 1 minute before rechecking all posts
 
 if __name__ == '__main__':
