@@ -39,7 +39,7 @@ def removePost(submission):
 
 def main(r):
     while True:
-        for s in reddit.subreddit(sub).new():
+        for s in reddit.subreddit(str(sub)).new():
             remove(s)
         time.sleep(60) #waits 1 minute before rechecking all posts
 
